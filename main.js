@@ -4,6 +4,7 @@ function main() {
   // Ambil konteks WebGL
   const gl = canvas.getContext("webgl");
 
+  //posisi
   const vertexShaderCode = `
     void main() {
       gl_Position = vec4(0.3, 0.5, 0.0, 1.0);
@@ -15,6 +16,7 @@ function main() {
   gl.shaderSource(vertexShader, vertexShaderCode);
   gl.compileShader(vertexShader);
 
+  //warna
   const fragmentShaderCode = `
     void main() {
       gl_FragColor = vec4(0.5, 0.0, 0.0, 1.0);
