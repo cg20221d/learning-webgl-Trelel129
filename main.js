@@ -39,7 +39,7 @@ function main() {
   gl.useProgram(shaderProgram);
 
   // Set warna background
-  gl.clearColor(0.9, 0.2, 0.0, 0.5);
+  //gl.clearColor(0.9, 0.2, 0.0, 0.5);
   // Bersihkan buffer warna
   gl.clear(gl.COLOR_BUFFER_BIT);
 
