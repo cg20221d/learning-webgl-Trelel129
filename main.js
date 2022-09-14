@@ -1,33 +1,38 @@
 function main() {
   // Ambil canvas
-  const canvas = document.getElementById("myCanvas");
+  var canvas = document.getElementById("myCanvas");
   // Ambil konteks WebGL
-  const gl = canvas.getContext("webgl");
+  var gl = canvas.getContext("webgl");
 
   //posisi
-  const vertexShaderCode = `
+  var vertexShaderCode = `
     void main() {
-      gl_Position = vec4(0.3, 0.5, 0.0, 1.0);
+      float x = 0.0;
+      float y = 0.0;
+      gl_Position = vec4(x, y, 0.0, w);
       gl_PointSize = 10.0;
     }
   `;
 
-  const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+  var vertexShader = gl.createShader(gl.VERTEX_SHADER);
   gl.shaderSource(vertexShader, vertexShaderCode);
   gl.compileShader(vertexShader);
 
   //warna
-  const fragmentShaderCode = `
+  var fragmentShaderCode = `
     void main() {
-      gl_FragColor = vec4(0.5, 0.0, 0.0, 1.0);
+      float r = 0.0;
+      float g = 0.0;
+      float b = 1.0;
+      gl_FragColor = vec4(r, g, b, 1.0);
     }
   `;
 
-  const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+  var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
   gl.shaderSource(fragmentShader, fragmentShaderCode);
   gl.compileShader(fragmentShader);
 
-  const shaderProgram = gl.createProgram();
+  var shaderProgram = gl.createProgram();
   gl.attachShader(shaderProgram, vertexShader);
   gl.attachShader(shaderProgram, fragmentShader);
   gl.linkProgram(shaderProgram);
