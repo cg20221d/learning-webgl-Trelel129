@@ -5,9 +5,10 @@ function main() {
   var gl = canvas.getContext("webgl");
   //array 1 dimensi
 var vertices = [
-  0.5, 0.5, 
-  0.0, 0.0, 
-  -0.5, 0.5
+  0.5, 0.5, // A: kanan atas
+  0.0, 0.0, // B: bawah tengah
+  -0.5, 0.5, // C: kiri atas
+  0.0, 1.0 // D: atas tengah
 ];
 
 var buffer = gl.createBuffer();
@@ -63,5 +64,7 @@ gl.enableVertexAttribArray(aPosition);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   // Gambar titik
-  gl.drawArrays(gl.POINTS, 0, 3);
+  gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
 }
+
+//TRIANGLE FAN --> berdasarkan titik pusat
