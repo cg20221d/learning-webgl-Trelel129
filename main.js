@@ -5,10 +5,10 @@ function main() {
   var gl = canvas.getContext("webgl");
   //array 1 dimensi
 var vertices = [
-  0.5, 0.5, // A: kanan atas
-  0.0, 0.0, // B: bawah tengah
-  -0.5, 0.5, // C: kiri atas
-  0.0, 1.0 // D: atas tengah
+  0.5, 0.5, 0.0, 1.0, 1.0, // A: kanan atas   (CYAN)
+  0.0, 0.0, 1.0, 0.0, 1.0, // B: bawah tengah (MAGENTA)
+  -0.5, 0.5, 1.0, 1.0, 0.0, // C: kiri atas   (KUNING)
+  0.0, 1.0, 1.0, 1.0, 1.0 // D: atas tengah   (PUTIH)
 ];
 
 var buffer = gl.createBuffer();
@@ -55,11 +55,18 @@ gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
   // nilai posisi dari ARRAY_BUFFER
   // untuk setiap vertex yang sedang diproses
   var aPosition = gl.getAttribLocation(shaderProgram,"aPosition");
-gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 
+  5 * Float32Array.BYTES_PER_ELEMENT, 
+  0);
 gl.enableVertexAttribArray(aPosition);
+  var aColor = gl.getAttribLocation(shaderProgram,"aColor");
+gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, 
+  5 * Float32Array.BYTES_PER_ELEMENT, 
+  2 * Float32Array.BYTES_PER_ELEMENT);
+gl.enableVertexAttribArray(aColor);
 
   // Set warna background
-  gl.clearColor(0.9, 0.65, 0.0, 0.5);
+  gl.clearColor(1.0, 1.0, 0.0, 1.0);
   // Bersihkan buffer warna
   gl.clear(gl.COLOR_BUFFER_BIT);
 
