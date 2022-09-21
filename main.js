@@ -18,11 +18,14 @@ gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
   //posisi
   var vertexShaderCode = `
   attribute vec2 aPosition;
+  attribute vec2 aColor;
+  varying vec3 vColor;
     void main() {
       float x = aPosition.x;
       float y = aPosition.y;
       gl_PointSize = 10.0;
       gl_Position = vec4(aPosition.xy, 0.0, 1.0);
+      vColor = aColor;
     }
   `;
 
@@ -33,11 +36,9 @@ gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
   //warna
   var fragmentShaderCode = `
     precision mediump float;
+    varying vec3  vColor;
     void main() {
-      float r = 0.0;
-      float g = 0.0;
-      float b = 1.0;
-      gl_FragColor = vec4(r, g, b, 1.0);
+      gl_FragColor = vec4(vColor, 1.0);
     }
   `;
 
@@ -59,6 +60,7 @@ gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false,
   5 * Float32Array.BYTES_PER_ELEMENT, 
   0);
 gl.enableVertexAttribArray(aPosition);
+
   var aColor = gl.getAttribLocation(shaderProgram,"aColor");
 gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, 
   5 * Float32Array.BYTES_PER_ELEMENT, 
