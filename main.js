@@ -50,6 +50,7 @@ function main() {
 
   // Variabel lokal
   var theta = 0.0;
+  
   var freeze = false;
 
   // Variabel pointer ke GLSL
@@ -78,6 +79,7 @@ function main() {
   // Papan ketuk
   function onKeydown(event) {
     if (event.keyCode == 32) freeze = !freeze;
+    if (event.keyCode == 87) theta+=0.5;
   }
   function onKeyup(event) {
     if (event.keyCode == 32) freeze = !freeze;
