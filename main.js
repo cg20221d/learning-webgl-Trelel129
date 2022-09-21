@@ -13,7 +13,7 @@ function main() {
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
-  // Vertex shader
+  // Posisi
   var vertexShaderCode =  `
   attribute vec2 aPosition;
   attribute vec3 aColor;
@@ -30,7 +30,7 @@ function main() {
   gl.shaderSource(vertexShaderObject, vertexShaderCode);
   gl.compileShader(vertexShaderObject);   // sampai sini sudah jadi .o
 
-  // Fragment shader
+  // Warna
   var fragmentShaderCode = `
   precision mediump float;
   varying vec3 vColor;
@@ -75,6 +75,15 @@ function main() {
     freeze = !freeze;
   }
   document.addEventListener("click", onMouseClick);
+  // Papan ketuk
+  function onKeydown(event) {
+    if (event.keyCode == 32) freeze = !freeze;
+  }
+  function onKeyup(event) {
+    if (event.keyCode == 32) freeze = !freeze;
+  }
+  document.addEventListener("keydown", onKeydown);
+  document.addEventListener("keyup", onKeyup);
   function render() {
       gl.clearColor(1.0,      0.65,    0.0,    1.0);  // Oranye
       //            Merah     Hijau   Biru    Transparansi
